@@ -13,7 +13,7 @@ import {
   ProductDetail,
   ProductDetailLoading,
   RelatedProducts,
-  ViewedProducts
+  ViewedProducts,
 } from '@/components'
 import { SWR_KEY, WEB_TITTLE } from '@/constants'
 import { fromProductSlugToProductId, isArrayHasValue, isObjectHasValue } from '@/helper'
@@ -21,8 +21,7 @@ import { useEffect, useState } from 'react'
 
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
-    const res: any = await productAPI.filterProduct({ product_type: 'product_product', limit: 12 })
-
+    const res: any = await productAPI.filterProduct({ product_type: 'product_product', limit: 1000 })
     return {
       paths: res?.data?.result.map((item: Product) => ({
         params: { productId: item.product_id + '' },
@@ -41,7 +40,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export async function getStaticProps(context: GetStaticPropsContext) {
   return {
     props: {
-      productId: context?.params!.productId,
+      productId: context?.params?.productId,
     },
   }
 }
