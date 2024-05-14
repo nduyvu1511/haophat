@@ -21,7 +21,7 @@ import axiosClient from '.'
 
 const productAPI = {
   filterProduct: (params?: FilterProductParams): Promise<HTTPProductFilterResponse<Product[]>> => {
-    return axiosClient.post('/product_controller/list_product_by_filter', {
+    return axiosClient.post('https://hpgroup.satavan.vn/product_controller/list_product_by_filter', {
       params: {
         ...params,
       },
